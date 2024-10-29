@@ -5,19 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3694cb8b-40c4-4407-bcc1-59c645812f6b" name="Changes" comment="inicijalni commit">
-      <change afterPath="$PROJECT_DIR$/src/pages/AboutUsPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/AuthPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/ContactPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/HomePage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/NotFoundPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/TermsOfServicePage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Footer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Logo.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/PrivacyPolicyPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Landing.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Landing.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AboutUsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AboutUsPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,6 +100,7 @@
       <workItem from="1729797140834" duration="42000" />
       <workItem from="1729886106765" duration="2280000" />
       <workItem from="1730125549800" duration="3261000" />
+      <workItem from="1730227542982" duration="1472000" />
     </task>
     <task id="LOCAL-00001" summary="inicijalni commit">
       <option name="closed" value="true" />

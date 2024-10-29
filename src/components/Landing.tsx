@@ -1,5 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import Footer from "./Footer";
+import Logo from "./Logo";
 
 function Landing() {
     return (
@@ -7,13 +9,7 @@ function Landing() {
 
             <div className="flex flex-col items-center p-8 rounded-lg shadow-lg bg-gray-900 w-full max-w-md">
 
-                <div className="flex flex-col items-center mb-8">
-                    <img
-                        alt="Your Company"
-                        src="/images/logoVeci1.png"
-                        className="mx-auto h-22 w-auto"
-                    />
-                </div>
+                <Logo></Logo>
 
                 <h1 className="text-xl font-bold mb-6 text-center text-white">
                     Ponude koje čvrsto stoje – baš kao vaši projekti!
@@ -40,12 +36,7 @@ function Landing() {
                 </div>
             </div>
 
-            <div className="absolute bottom-4 text-gray-500 text-xs flex space-x-4">
-                <a href="#" className="hover:text-gray-300">O nama</a>
-                <a href="#" className="hover:text-gray-300">Uvjeti poslovanja</a>
-                <a href="#" className="hover:text-gray-300">Izjava o privatnosti</a>
-                <a href="#" className="hover:text-gray-300">Kontakt</a>
-            </div>
+            <Footer></Footer>
         </div>
     );
 }
