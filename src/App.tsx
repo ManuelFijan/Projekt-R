@@ -22,6 +22,7 @@ function App() {
             <Route path={"/contact-page"} element={<ContactPage/>}></Route>
             <Route path={"/privacy-policy-page"} element={<PrivacyPolicyPage/>}></Route>
             <Route path={"/terms-of-service-page"} element={<TermsOfServicePage/>}></Route>
+            <Route path={"/error"} element={<NotFoundPage></NotFoundPage>}></Route>
             <Route path={"*"} element={<NotFoundPage/>}></Route>
         </Routes>
     );
