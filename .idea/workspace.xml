@@ -4,8 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3694cb8b-40c4-4407-bcc1-59c645812f6b" name="Changes" comment="Dodana &quot;o nama&quot; stranica. Logo, footer i back button pretvoreni u komponente">
+    <list default="true" id="3694cb8b-40c4-4407-bcc1-59c645812f6b" name="Changes" comment="ispravak greške">
+      <change afterPath="$PROJECT_DIR$/public/images/worker.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Calendar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/ProductsPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/ProfilePage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/ProjectsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BackButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BackButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LoginPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/RegisterPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RegisterPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,6 +65,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Manuel/WebstormProjects/Projekt-R/public/images&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -65,6 +77,14 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Manuel\WebstormProjects\Projekt-R\public\images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Manuel\WebstormProjects\Projekt-R\src\components" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="npm start" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -100,7 +120,14 @@
       <workItem from="1730125549800" duration="3261000" />
       <workItem from="1730227542982" duration="7681000" />
       <workItem from="1730929992670" duration="4191000" />
-      <workItem from="1730967981380" duration="297000" />
+      <workItem from="1730967981380" duration="1104000" />
+      <workItem from="1730984374307" duration="38000" />
+      <workItem from="1730984752251" duration="83000" />
+      <workItem from="1731502198780" duration="1222000" />
+      <workItem from="1735493482150" duration="2000" />
+      <workItem from="1736165431969" duration="680000" />
+      <workItem from="1736183823663" duration="11232000" />
+      <workItem from="1736278864625" duration="7458000" />
     </task>
     <task id="LOCAL-00001" summary="inicijalni commit">
       <option name="closed" value="true" />
@@ -118,7 +145,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730236279076</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="ispravak greške">
+      <option name="closed" value="true" />
+      <created>1730968350527</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1730968350527</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,6 +173,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="inicijalni commit" />
     <MESSAGE value="Dodana &quot;o nama&quot; stranica. Logo, footer i back button pretvoreni u komponente" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dodana &quot;o nama&quot; stranica. Logo, footer i back button pretvoreni u komponente" />
+    <MESSAGE value="ispravak greške" />
+    <option name="LAST_COMMIT_MESSAGE" value="ispravak greške" />
   </component>
 </project>

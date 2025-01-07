@@ -9,7 +9,9 @@ import AboutUsPage from "./pages/AboutUsPage";
 import ContactPage from "./pages/ContactPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
-
+import CalendarPage from "./components/Calendar";
+import ProfilePage from "./pages/ProfilePage";
+import ProjectsPage from "./pages/ProjectsPage";
 
 function App() {
     return (
@@ -23,6 +25,10 @@ function App() {
             <Route path={"/privacy-policy-page"} element={<PrivacyPolicyPage/>}></Route>
             <Route path={"/terms-of-service-page"} element={<TermsOfServicePage/>}></Route>
             <Route path={"/error"} element={<NotFoundPage></NotFoundPage>}></Route>
+            <Route path={"/calendar"} element={<CalendarPage></CalendarPage>}></Route>
+            <Route path={"/profile"} element={<ProfilePage />} />
+            <Route path={"/projects"} element={<ProjectsPage />} />
+
             <Route path={"*"} element={<NotFoundPage/>}></Route>
         </Routes>
     );
