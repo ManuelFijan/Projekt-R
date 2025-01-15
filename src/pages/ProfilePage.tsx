@@ -1,27 +1,30 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, {useEffect, useState} from "react";
 import Logo from "../components/Logo";
 import BackButton from "../components/BackButton";
-
-interface User {
-    firstName: string;
-    lastName: string;
-    email: string;
-    primaryBusinessArea: string;
-    profilePicture: string;
-}
+import { getUserProfile, updateUserProfile, User } from "../services/UserService";
 
 function ProfilePage() {
-    const navigate = useNavigate();
-    const [user, setUser] = useState<User>({
-        firstName: "Ivo",
-        lastName: "Ivić",
-        email: "ivo@gmail.com",
-        primaryBusinessArea: "Grubi radovi",
-        profilePicture: "/images/worker.jpg",
+    const [user, setUser] = useState<User | null>(null);
+    const [formData, setFormData] = useState<User>({
+        firstName: "",
+        lastName: "",
+        email: "",
+        primaryBusinessArea: "",
+        profilePicture: "",
     });
 
-    const [formData, setFormData] = useState<User>({ ...user });
+    //fetch user data from service
+    useEffect(() => {
+        (async () => {
+            try {
+                const fetchedUser = await getUserProfile();
+                setUser(fetchedUser);
+                setFormData({ ...fetchedUser });
+            } catch (err) {
+                console.error("Failed to load profile:", err);
+            }
+        })();
+    }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -31,12 +34,16 @@ function ProfilePage() {
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        setUser({ ...formData });
-
-        alert("Podaci uspješno ažurirani!");
+        try {
+            const updatedUser = await updateUserProfile(formData);
+            setUser(updatedUser); // sync state
+            alert("Podaci uspješno ažurirani!");
+        } catch (err) {
+            alert("Nešto je pošlo po krivu prilikom ažuriranja profila.");
+            console.error(err);
+        }
     };
 
     return (
@@ -45,7 +52,7 @@ function ProfilePage() {
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <Logo />
                     <h2 className="mt-10 text-center text-3xl font-bold leading-9 tracking-tight text-orange-500">
-                        Moj Profil
+                        Moj profil
                     </h2>
                 </div>
 
@@ -56,7 +63,7 @@ function ProfilePage() {
 
                             <div className="flex flex-col items-center">
                                 <img
-                                    src={user.profilePicture}
+                                    src={user?.profilePicture}
                                     alt="Profile"
                                     className="h-24 w-24 rounded-full object-cover mb-4"
                                 />
@@ -139,7 +146,7 @@ function ProfilePage() {
                                     type="submit"
                                     className="flex w-full justify-center rounded-md bg-orange-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
                                 >
-                                    Ažuriraj Profil
+                                    Ažuriraj profil
                                 </button>
                             </div>
                         </form>

@@ -1,18 +1,13 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Disclosure, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import CalendarPage from '../components/Calendar';
 import ProjectsPage from "./ProjectsPage";
 import ProductsPage from "./ProductsPage";
-import { Link } from 'react-router-dom';
-
-interface Product {
-    id: number;
-    name: string;
-    category: string;
-    price: number;
-    description: string;
-}
+import { Link, useNavigate } from 'react-router-dom';
+import QuotesPage from "./QuotesPage";
+import {clearToken, getToken} from "../services/AuthSession";
+import ConversationsPage from "./ConversationPage";
 
 const user = {
     name: 'Ivo Ivić',
@@ -21,7 +16,7 @@ const user = {
 };
 
 const navigation = [
-    { name: 'Početna stranica', href: '#', current: true },
+    { name: 'Ponude', href: '#', current: false },
     { name: 'Projekti', href: '#', current: false },
     { name: 'Razgovori', href: '#', current: false },
     { name: 'Kalendar', href: '#', current: false },
@@ -38,19 +33,33 @@ function classNames(...classes: string[]): string {
 }
 
 function HomePage() {
-    const [currentNav, setCurrentNav] = useState<string>('Početna stranica');
+    const [currentNav, setCurrentNav] = useState<string>('Ponude');
+    const navigate = useNavigate();
+
+    const handleSignOut = () => {
+        clearToken();
+        navigate("/");
+    };
 
     const handleNavClick = (navName: string) => {
         setCurrentNav(navName);
     };
+    useEffect(() => {
+        const token = getToken();
+        if (!token) {
+            navigate("/");
+        }
+    }, [navigate]);
 
     return (
-        <div className="min-h-full">
+        <div className="min-h-full flex flex-col">
+            {/* navigation */}
             <Disclosure as="nav" className="bg-gray-800">
                 {({ open }) => (
                     <>
                         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                             <div className="flex h-16 items-center justify-between">
+                                {/* left: logo + nav */}
                                 <div className="flex items-center">
                                     <div className="shrink-0">
                                         <img
@@ -83,13 +92,17 @@ function HomePage() {
                                         </div>
                                     </div>
                                 </div>
+
+                                {/* right: user menu */}
                                 <div className="hidden md:block">
                                     <div className="ml-4 flex items-center md:ml-6">
-
                                         <Menu as="div" className="relative ml-3">
                                             <div>
                                                 <MenuButton
-                                                    className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                                    className="relative flex max-w-xs items-center rounded-full
+                                     bg-gray-800 text-sm focus:outline-none
+                                     focus:ring-2 focus:ring-white
+                                     focus:ring-offset-2 focus:ring-offset-gray-800"
                                                 >
                                                     <span className="sr-only">Open user menu</span>
                                                     <img
@@ -99,28 +112,55 @@ function HomePage() {
                                                     />
                                                 </MenuButton>
                                             </div>
-                                            <MenuItems className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                            <MenuItems
+                                                className="absolute right-0 z-10 mt-2 w-48
+                                   origin-top-right rounded-md bg-white py-1
+                                   shadow-lg ring-1 ring-black ring-opacity-5
+                                   focus:outline-none"
+                                            >
                                                 {userNavigation.map((item) => (
-                                                    <MenuItem key={item.name} as={Link} to={item.href}>
-                                                        {({ active }) => (
-                                                            <span
-                                                                className={classNames(
-                                                                    active ? 'bg-gray-100' : '',
-                                                                    'block px-4 py-2 text-sm text-gray-700'
-                                                                )}
-                                                            >
-                                                                {item.name}
-                                                            </span>
-                                                        )}
+                                                    <MenuItem key={item.name}>
+                                                        {({ active }) => {
+                                                            if (item.name === "Odjava") {
+                                                                return (
+                                                                    <button
+                                                                        className={classNames(
+                                                                            active ? 'bg-gray-100' : '',
+                                                                            'block w-full text-left px-4 py-2 text-sm text-gray-700'
+                                                                        )}
+                                                                        onClick={handleSignOut}
+                                                                    >
+                                                                        {item.name}
+                                                                    </button>
+                                                                );
+                                                            }
+                                                            return (
+                                                                <Link
+                                                                    to={item.href}
+                                                                    className={classNames(
+                                                                        active ? 'bg-gray-100' : '',
+                                                                        'block px-4 py-2 text-sm text-gray-700'
+                                                                    )}
+                                                                >
+                                                                    {item.name}
+                                                                </Link>
+                                                            );
+                                                        }}
                                                     </MenuItem>
                                                 ))}
                                             </MenuItems>
                                         </Menu>
                                     </div>
                                 </div>
+
+                                {/* mobile menu */}
                                 <div className="-mr-2 flex md:hidden">
                                     <Disclosure.Button
-                                        className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                        className="inline-flex items-center justify-center rounded-md
+                               bg-gray-800 p-2 text-gray-400 hover:bg-gray-700
+                               hover:text-white focus:outline-none focus:ring-2
+                               focus:ring-white focus:ring-offset-2
+                               focus:ring-offset-gray-800"
                                     >
                                         <span className="sr-only">Open main menu</span>
                                         {open ? (
@@ -132,6 +172,7 @@ function HomePage() {
                                 </div>
                             </div>
                         </div>
+
                         <Disclosure.Panel className="md:hidden">
                             <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                                 {navigation.map((item) => (
@@ -166,7 +207,10 @@ function HomePage() {
                                     </div>
                                     <button
                                         type="button"
-                                        className="ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                        className="ml-auto flex-shrink-0 rounded-full
+                               bg-gray-800 p-1 text-gray-400 hover:text-white
+                               focus:outline-none focus:ring-2 focus:ring-white
+                               focus:ring-offset-2 focus:ring-offset-gray-800"
                                     >
                                         <span className="sr-only">View notifications</span>
                                         <BellIcon className="h-6 w-6" aria-hidden="true" />
@@ -182,7 +226,8 @@ function HomePage() {
                                                 e.preventDefault();
                                                 handleNavClick(item.name);
                                             }}
-                                            className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                                            className="block rounded-md px-3 py-2 text-base font-medium
+                                 text-gray-400 hover:bg-gray-700 hover:text-white"
                                         >
                                             {item.name}
                                         </Disclosure.Button>
@@ -194,20 +239,17 @@ function HomePage() {
                 )}
             </Disclosure>
 
-            <main>
+            <main className="flex-1">
                 <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                    {currentNav === 'Početna stranica' && (
-                        <div>
-                            <h1 className="text-4xl font-bold">Glavna stranica za izradu i pregled ponuda</h1>
-                        </div>
-                    )}
                     {currentNav === 'Projekti' && <ProjectsPage />}
                     {currentNav === 'Kalendar' && <CalendarPage />}
                     {currentNav === 'Baza proizvoda' && <ProductsPage />}
+                    {currentNav === 'Ponude' && <QuotesPage />}
+                    {currentNav === 'Razgovori' && <ConversationsPage />}
                 </div>
             </main>
         </div>
-    )
+    );
 }
 
 export default HomePage;

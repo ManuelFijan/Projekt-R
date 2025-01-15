@@ -1,47 +1,34 @@
-import React, { useState } from 'react';
-
-interface Product {
-    id: number;
-    name: string;
-    category: string;
-    price: number;
-    description: string;
-}
+import React, {useEffect, useRef, useState} from 'react';
+import { Product, getProducts, addProduct } from "../services/ProductService";
 
 const ProductsPage: React.FC = () => {
 
-    const [products, setProducts] = useState<Product[]>([
-        {
-            id: 1,
-            name: 'Cijev CU 5m',
-            category: 'Građevinski Materijal',
-            price: 30.00,
-            description: 'Opis',
-        },
-        {
-            id: 2,
-            name: 'Čavao',
-            category: 'Građevinski Materijal',
-            price: 1.00,
-            description: 'Opis',
-        },
-        {
-            id: 3,
-            name: 'Cement',
-            category: 'Građevinski Materijal',
-            price: 15.00,
-            description: 'Opis',
-        },
-    ]);
-
-    const [searchQuery, setSearchQuery] = useState<string>('');
+    const [products, setProducts] = useState<Product[]>([]);
+    const [searchQuery, setSearchQuery] = useState<string>("");
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-    const [newProduct, setNewProduct] = useState<Omit<Product, 'id'>>({
-        name: '',
-        category: '',
+    const [newProduct, setNewProduct] = useState<Omit<Product, "id">>({
+        name: "",
+        category: "",
         price: 0,
-        description: '',
+        description: "",
     });
+
+    const didFetchRef = useRef(false);
+    // fetch products from the service
+    useEffect(() => {
+        console.log("Fetching products...", didFetchRef.current);
+        if (didFetchRef.current) return;
+        didFetchRef.current = true;
+
+        (async () => {
+            try {
+                const fetchedProducts = await getProducts();
+                setProducts(fetchedProducts);
+            } catch (err) {
+                console.error("Failed to fetch products:", err);
+            }
+        })();
+    }, []);
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(e.target.value);
@@ -67,20 +54,29 @@ const ProductsPage: React.FC = () => {
         }));
     };
 
-    const handleAddProduct = (e: React.FormEvent) => {
+    const isSubmitting = useRef(false);
+    // add product to service
+    const handleAddProduct = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (newProduct.name && newProduct.category && newProduct.price && newProduct.description) {
-            const newId = products.length > 0 ? products[products.length - 1].id + 1 : 1;
-            setProducts([...products, { id: newId, ...newProduct }]);
+        console.log("[handleAddProduct] top - Attempting to add product", newProduct);
+        if (isSubmitting.current) return;
+        isSubmitting.current = true;
+        try {
+            const createdProduct = await addProduct(newProduct);
+            console.log("[handleAddProduct] got createdProduct:", createdProduct);
+            setProducts([...products, createdProduct]);
             closeModal();
-        } else {
-            alert('Molimo popunite sva polja.');
+        } catch (err: any) {
+            alert(err);
+        } finally {
+            isSubmitting.current = false;
+            console.log("[handleAddProduct] done");
         }
     };
 
     return (
         <div className="bg-white shadow rounded-lg p-6">
-            <h2 className="text-2xl font-semibold mb-4">Baza Proizvoda</h2>
+            <h2 className="text-2xl font-semibold mb-4">Baza proizvoda</h2>
 
             <div className="flex flex-col md:flex-row justify-between items-center mb-4">
                 <input
@@ -94,7 +90,7 @@ const ProductsPage: React.FC = () => {
                     onClick={openModal}
                     className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
                 >
-                    Dodaj Novi Proizvod
+                    Dodaj novi proizvod
                 </button>
             </div>
 
@@ -177,10 +173,15 @@ const ProductsPage: React.FC = () => {
                                         className="text-lg leading-6 font-medium text-gray-900"
                                         id="modal-title"
                                     >
-                                        Dodaj Novi Proizvod
+                                        Dodaj novi proizvod
                                     </h3>
                                     <div className="mt-2">
-                                        <form onSubmit={handleAddProduct}>
+                                        <form onSubmit={handleAddProduct}
+                                        onKeyDown={event => {
+                                            if(event.key==="Enter") {
+                                                event.preventDefault();
+                                            }
+                                        }}>
                                             <div className="mb-4">
                                                 <label
                                                     htmlFor="name"
@@ -255,7 +256,7 @@ const ProductsPage: React.FC = () => {
                                                     type="submit"
                                                     className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-orange-600 text-base font-medium text-white hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 sm:ml-3 sm:w-auto sm:text-sm"
                                                 >
-                                                    Dodaj Proizvod
+                                                    Dodaj proizvod
                                                 </button>
                                                 <button
                                                     type="button"

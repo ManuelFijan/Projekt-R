@@ -4,19 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3694cb8b-40c4-4407-bcc1-59c645812f6b" name="Changes" comment="ispravak greške">
-      <change afterPath="$PROJECT_DIR$/public/images/worker.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Calendar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/ProductsPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/ProfilePage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/ProjectsPage.tsx" afterDir="false" />
+    <list default="true" id="3694cb8b-40c4-4407-bcc1-59c645812f6b" name="Changes" comment="napravljene glavne komponente">
+      <change afterPath="$PROJECT_DIR$/src/fonts/OpenSans.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/ConversationPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/QuotesPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/AuthService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/AuthSession.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/CalendarService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/EmailService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/FolderService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/ProductService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/ProjectService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/QuoteService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/UserService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BackButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BackButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Calendar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Calendar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Landing.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Landing.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ProductsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProductsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ProfilePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProfilePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ProjectsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProjectsPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/RegisterPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RegisterPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,6 +41,7 @@
       <list>
         <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -127,7 +140,9 @@
       <workItem from="1735493482150" duration="2000" />
       <workItem from="1736165431969" duration="680000" />
       <workItem from="1736183823663" duration="11232000" />
-      <workItem from="1736278864625" duration="7458000" />
+      <workItem from="1736278864625" duration="7712000" />
+      <workItem from="1736854229542" duration="20647000" />
+      <workItem from="1736941963821" duration="9477000" />
     </task>
     <task id="LOCAL-00001" summary="inicijalni commit">
       <option name="closed" value="true" />
@@ -153,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730968350527</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="napravljene glavne komponente">
+      <option name="closed" value="true" />
+      <created>1736292537213</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1736292537213</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,6 +197,7 @@
     <MESSAGE value="inicijalni commit" />
     <MESSAGE value="Dodana &quot;o nama&quot; stranica. Logo, footer i back button pretvoreni u komponente" />
     <MESSAGE value="ispravak greške" />
-    <option name="LAST_COMMIT_MESSAGE" value="ispravak greške" />
+    <MESSAGE value="napravljene glavne komponente" />
+    <option name="LAST_COMMIT_MESSAGE" value="napravljene glavne komponente" />
   </component>
 </project>

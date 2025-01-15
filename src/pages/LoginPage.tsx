@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
 import BackButton from "../components/BackButton";
+import { login } from "../services/AuthService";
 
 function LoginPage() {
     const navigate = useNavigate();
@@ -9,7 +10,7 @@ function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (!email || !password) {
@@ -17,7 +18,13 @@ function LoginPage() {
             return;
         }
 
-        navigate("/homepage");
+        try {
+            const response = await login(email, password);
+            console.log("Received token:", response.token);
+            navigate("/homepage");
+        } catch (err: any) {
+            alert(err);
+        }
     };
 
     return (

@@ -1,9 +1,19 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React, {useEffect} from "react";
+import {Link, useNavigate} from "react-router-dom";
 import Footer from "./Footer";
 import Logo from "./Logo";
+import { getToken } from "../services/AuthSession";
 
 function Landing() {
+    const navigate = useNavigate();
+    useEffect(() => {
+        // if a token is present, redirect to /homepage
+        const token = getToken();
+        if (token) {
+            navigate("/homepage");
+        }
+    }, [navigate]);
+
     return (
         <div className="flex h-screen items-center justify-center bg-gray-800 text-gray-300">
 

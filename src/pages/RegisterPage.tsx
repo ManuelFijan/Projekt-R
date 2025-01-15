@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, {useState} from "react";
+import {useNavigate, Link} from "react-router-dom";
 import Logo from "../components/Logo";
 import BackButton from "../components/BackButton";
+import {register} from "../services/AuthService";
 
 function RegisterPage() {
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ function RegisterPage() {
     const [password, setPassword] = useState("");
     const [primaryBusinessArea, setPrimaryBusinessArea] = useState("Grubi radovi");
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (!firstName || !lastName || !email || !password || !primaryBusinessArea) {
@@ -20,15 +21,29 @@ function RegisterPage() {
             return;
         }
 
-        navigate("/homepage");
+        try {
+            const response = await register(
+                firstName,
+                lastName,
+                email,
+                password,
+                primaryBusinessArea
+            );
+            console.log("Registration success:", response);
+            alert(response.message);
+
+            navigate("/homepage");
+        } catch (err: any) {
+            alert(err);
+        }
     };
 
     return (
         <>
-            <BackButton />
+            <BackButton/>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                    <Logo />
+                    <Logo/>
                     <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                         Registrirajte se i poboljšajte svoje poslovanje već danas
                     </h2>
@@ -71,7 +86,8 @@ function RegisterPage() {
                         </div>
 
                         <div>
-                            <label htmlFor="registerEmail" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="registerEmail"
+                                   className="block text-sm font-medium leading-6 text-gray-900">
                                 Email
                             </label>
                             <div className="mt-2">
@@ -89,7 +105,8 @@ function RegisterPage() {
                         </div>
 
                         <div>
-                            <label htmlFor="registerPassword" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="registerPassword"
+                                   className="block text-sm font-medium leading-6 text-gray-900">
                                 Lozinka
                             </label>
                             <div className="mt-2">
@@ -107,7 +124,8 @@ function RegisterPage() {
                         </div>
 
                         <div>
-                            <label htmlFor="primaryBusinessArea" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="primaryBusinessArea"
+                                   className="block text-sm font-medium leading-6 text-gray-900">
                                 Primarno područje poslovanja
                             </label>
                             <div className="mt-2">
